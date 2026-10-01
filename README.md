@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com/?font=JetBrains+Mono&weight=500&size=20&duration=2800&pause=900&color=2C9CDB&center=true&vCenter=true&width=600&lines=Zephyr+RTOS+%C2%B7+nRF+Connect+SDK;Bluetooth+LE+Audio+%C2%B7+Auracast;Secure+boot+%C2%B7+MCUboot;Silicon+bring-up%2C+fixed+upstream" alt="Zephyr RTOS, LE Audio, secure boot, silicon bring-up" />
+  <img src="https://readme-typing-svg.demolab.com/?font=JetBrains+Mono&weight=500&size=20&duration=2800&pause=900&color=2C9CDB&center=true&vCenter=true&width=600&lines=Hard+problems%2C+solved+at+the+root;Zephyr+RTOS+%C2%B7+nRF+Connect+SDK;Bluetooth+LE+Audio+%C2%B7+Auracast;Secure+boot+%C2%B7+MCUboot;Silicon+bring-up%2C+fixed+upstream" alt="Zephyr RTOS, LE Audio, secure boot, silicon bring-up" />
 </p>
 
 <p align="center">
@@ -17,10 +17,13 @@
 Embedded engineer and founder of [ArivEmb](https://arivemb.com),
 [Devitwise](https://devitwise.com) and [Flowtly](https://flowtly.eu).
 
-Most of my time goes into firmware on Zephyr RTOS and the nRF Connect SDK:
-Bluetooth LE Audio and Auracast, audio codecs, MCUboot, and bringing up new
-Microchip PIC32 parts in Zephyr. When I hit a bug or a missing driver, I fix it
-upstream.
+I take on the hard problems: the bug nobody can reproduce, the timing issue that
+only shows up in the field, the new silicon with no driver yet. I dig until I
+understand the root cause, then fix it properly, upstream when it belongs there.
+
+Day to day that means firmware on Zephyr RTOS and the nRF Connect SDK: Bluetooth
+LE Audio and Auracast, audio codecs, secure boot with MCUboot, and bringing up new
+Microchip PIC32 parts in Zephyr.
 
 ## Projects
 
