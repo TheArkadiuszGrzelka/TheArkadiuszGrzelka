@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://devitwise.com"><img src="https://img.shields.io/badge/devitwise.com-0f2027?style=for-the-badge&logo=googlechrome&logoColor=white" alt="devitwise.com" /></a>
+  <a href="https://devitwise.com"><img src="https://img.shields.io/badge/devitwise.com-0f2027?style=for-the-badge" alt="devitwise.com" /></a>
   <a href="https://arivemb.com"><img src="https://img.shields.io/badge/ArivEmb-203a43?style=for-the-badge" alt="ArivEmb" /></a>
   <a href="https://www.atitan.tech"><img src="https://img.shields.io/badge/aTitan-2c5364?style=for-the-badge" alt="aTitan" /></a>
   <a href="https://flowtly.eu"><img src="https://img.shields.io/badge/Flowtly-1f6feb?style=for-the-badge" alt="Flowtly" /></a>
