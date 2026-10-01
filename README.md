@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=180&section=header&text=Arkadiusz%20Grzelka&fontColor=ffffff&fontSize=46&fontAlignY=36&desc=Embedded%20firmware%20%C2%B7%20Wireless%20%C2%B7%20Upstream%20Zephyr&descAlignY=58&descSize=18&animation=fadeIn" alt="Arkadiusz Grzelka" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=180&section=header&text=Arkadiusz%20Grzelka&fontColor=ffffff&fontSize=46&fontAlignY=36&desc=Embedded%20firmware%20%C2%B7%20Wireless%20%C2%B7%20Open%20source%20contributor&descAlignY=58&descSize=18&animation=fadeIn" alt="Arkadiusz Grzelka" />
 </p>
 
 <p align="center">
