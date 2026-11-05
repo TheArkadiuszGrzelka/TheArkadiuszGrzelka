@@ -3,11 +3,14 @@
 
 Counts public pull requests only, read through the `gh` CLI.
 
-merged     merged into the repository's default branch
-backports  on any other branch, opened by me or carrying a commit of mine,
-           whoever opened it. GitHub search cannot filter by commit author,
-           so these come from the cross-references of my merged pull requests.
-open       still open, backports included
+merged  merged into any branch, backports included
+open    still open
+closed  closed without merging
+total   all of the above
+
+A pull request counts when I opened it, or when it is a backport carrying a
+commit of mine, whoever opened it. GitHub search cannot filter by commit
+author, so those come from the cross-references of my merged pull requests.
 """
 import html
 import json
@@ -144,30 +147,22 @@ def fetch_candidates(authored):
 
 def summarize(authored, candidates, me):
     """Per-repository counts; a pull request is counted once however often it is seen."""
-    backports = {}
-    for pr in authored:
-        if pr["base"] != pr["default"]:
-            backports[pr["repo"], pr["number"]] = pr
+    pulls = {(pr["repo"], pr["number"]): pr for pr in authored}
     for pr in candidates:
         if pr["base"] != pr["default"] and me in pr["logins"]:
-            backports[pr["repo"], pr["number"]] = pr
+            pulls[pr["repo"], pr["number"]] = pr
 
     summary = {}
-    for pr in authored:
-        summary.setdefault(pr["repo"], {"default": pr["default"], "merged": 0, "open": 0, "backports": [], "merged_backports": []})
-    for pr in authored:
-        if pr["base"] == pr["default"]:
-            summary[pr["repo"]]["merged"] += pr["state"] == "MERGED"
-            summary[pr["repo"]]["open"] += pr["state"] == "OPEN"
-    for pr in backports.values():
-        stats = summary[pr["repo"]]
-        if pr["state"] == "CLOSED":
-            continue
-        stats["backports"].append(pr)
-        if pr["state"] == "MERGED":
-            stats["merged_backports"].append(pr)
-        else:
-            stats["open"] += 1
+    for pr in pulls.values():
+        stats = summary.setdefault(pr["repo"], {
+            "merged": 0, "open": 0, "closed": 0, "total": 0, "backports": [], "merged_backports": [],
+        })
+        stats[pr["state"].lower()] += 1
+        stats["total"] += 1
+        if pr["base"] != pr["default"] and pr["state"] != "CLOSED":
+            stats["backports"].append(pr)
+            if pr["state"] == "MERGED":
+                stats["merged_backports"].append(pr)
     return summary
 
 
@@ -184,27 +179,32 @@ def totals(summary):
     merged_backports = [pr for stats in summary.values() for pr in stats["merged_backports"]]
     return {
         "merged": sum(stats["merged"] for stats in summary.values()),
-        "backports": len(merged_backports),
         "open": sum(stats["open"] for stats in summary.values()),
+        "closed": sum(stats["closed"] for stats in summary.values()),
+        "total": sum(stats["total"] for stats in summary.values()),
         "projects": len(summary),
         "branches": [branch_label(b) for b in sorted({pr["base"] for pr in merged_backports}, key=branch_key)],
     }
 
 
+COLUMNS = (("merged", "+is%3Amerged"), ("open", "+is%3Aopen"), ("closed", "+is%3Aclosed+is%3Aunmerged"), ("total", ""))
+
+
 def pulls_link(repo, author, qualifier, count):
-    return f"[{count}](https://github.com/{repo}/pulls?q=is%3Apr+author%3A{author}+{qualifier})"
+    return f"[{count}](https://github.com/{repo}/pulls?q=is%3Apr+author%3A{author}{qualifier})"
 
 
 def render_stats_block(summary, author):
-    rows = sorted(summary, key=lambda r: (-summary[r]["merged"] - len(summary[r]["merged_backports"]), r))
-    lines = ["| Project | Focus | Merged | Backports | Open |", "|---|---|--:|--:|--:|"]
+    rows = sorted(summary, key=lambda r: (-summary[r]["merged"], r))
+    lines = ["| Project | Focus | Merged | Open | Closed | Total |", "|---|---|--:|--:|--:|--:|"]
     for repo in rows:
         stats = summary[repo]
         name, focus = PROJECTS.get(repo, (repo, ""))
-        merged = pulls_link(repo, author, f"is%3Amerged+base%3A{stats['default']}", stats["merged"])
-        opened = pulls_link(repo, author, "is%3Aopen", stats["open"])
-        backports = len(stats["merged_backports"])
-        lines.append(f"| [{name}](https://github.com/{repo}) | {focus} | {merged} | {backports or '-'} | {opened} |")
+        counts = " | ".join(
+            pulls_link(repo, author, qualifier, stats[key])
+            for key, qualifier in COLUMNS
+        )
+        lines.append(f"| [{name}](https://github.com/{repo}) | {focus} | {counts} |")
 
     # A backport keeps the title of the fix, so the title groups the branches of one fix.
     fixes = {}
@@ -229,9 +229,9 @@ def render_stats_svg(t):
     sans = "-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"
     branches = " · ".join(t["branches"])
     tiles = [
-        (40, "MERGED UPSTREAM", t["merged"], "into default branches", 64),
-        (340, "BACKPORTS", t["backports"], branches or "release branches", 44),
-        (600, "OPEN", t["open"], "in review upstream", 44),
+        (40, "MERGED", t["merged"], f"including {branches}" if branches else "upstream", 64),
+        (340, "OPEN", t["open"], "in review upstream", 44),
+        (600, "TOTAL", t["total"], "pull requests", 44),
         (830, "PROJECTS", t["projects"], "public upstreams", 44),
     ]
     body = ""
@@ -241,7 +241,7 @@ def render_stats_svg(t):
             f'<text x="{x}" y="112" class="value" font-size="{size}">{value}</text>'
             f'<text x="{x}" y="140" class="note">{html.escape(note)}</text>'
         )
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 168" width="1040" height="168" role="img" aria-label="{t['merged']} pull requests merged upstream, {t['backports']} backports, {t['open']} open, {t['projects']} projects">
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 168" width="1040" height="168" role="img" aria-label="{t['merged']} pull requests merged, {t['open']} open, {t['total']} in total, across {t['projects']} projects">
 <style>
 text {{ font-family: {sans}; }}
 .label {{ font-size: 13px; font-weight: 600; letter-spacing: 1.4px; fill: #8fb3c7; }}
