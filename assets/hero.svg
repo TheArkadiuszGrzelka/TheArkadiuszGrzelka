@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340" role="img" aria-label="Arkadiusz Grzelka. Embedded firmware, wireless, open source contributor. Hard problems, solved at the root.">
+<style>
+.name { font: 700 58px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; fill: #f4f9fc; }
+.mono { font-family: ui-monospace,SFMono-Regular,'JetBrains Mono',Menlo,Consolas,monospace; }
+.role { font-size: 19px; fill: #a9c1cf; }
+.motto { font-size: 19px; fill: #5cc4f2; }
+.trace { fill: none; stroke: #2c5364; stroke-width: 2; }
+.signal { fill: none; stroke: #5cc4f2; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 10 90; animation: flow 3.6s linear infinite; }
+.labels text { font-size: 15px; fill: #cfe0ea; }
+.chip-a { font: 700 44px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; fill: #f4f9fc; }
+.chip-b { font-size: 11px; letter-spacing: 1.5px; fill: #8fb3c7; }
+.cursor { animation: blink 1.2s steps(2) infinite; }
+@keyframes flow { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .signal { display: none; } .cursor { animation: none; } }
+</style>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b171d"/><stop offset=".55" stop-color="#14303c"/><stop offset="1" stop-color="#1d4556"/></linearGradient>
+<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#2c5364" opacity=".55"/></pattern>
+<clipPath id="card"><rect width="1200" height="340" rx="14"/></clipPath>
+</defs>
+<g clip-path="url(#card)">
+<rect width="1200" height="340" fill="url(#bg)"/>
+<rect width="1200" height="340" fill="url(#dots)"/>
+<g class="trace"><path d="M860 122H800L772 94H672"/><path d="M860 170H672"/><path d="M860 218H800L772 246H672"/><path d="M1000 122H1060L1088 94H1176"/><path d="M1000 170H1176"/><path d="M1000 218H1060L1088 246H1176"/><path d="M890 100V62L860 32V0"/><path d="M930 100V0"/><path d="M970 100V62L1000 32V0"/><path d="M890 240V278L860 308V340"/><path d="M930 240V340"/><path d="M970 240V278L1000 308V340"/></g>
+<g class="signal"><path d="M860 122H800L772 94H672" pathLength="100" style="animation-delay:-0.0s"/><path d="M860 170H672" pathLength="100" style="animation-delay:-0.7s"/><path d="M860 218H800L772 246H672" pathLength="100" style="animation-delay:-1.4s"/><path d="M1000 122H1060L1088 94H1176" pathLength="100" style="animation-delay:-2.1s"/><path d="M1000 170H1176" pathLength="100" style="animation-delay:-2.8s"/><path d="M1000 218H1060L1088 246H1176" pathLength="100" style="animation-delay:-3.5s"/><path d="M890 100V62L860 32V0" pathLength="100" style="animation-delay:-0.3s"/><path d="M930 100V0" pathLength="100" style="animation-delay:-0.8s"/><path d="M970 100V62L1000 32V0" pathLength="100" style="animation-delay:-1.3s"/><path d="M890 240V278L860 308V340" pathLength="100" style="animation-delay:-1.8s"/><path d="M930 240V340" pathLength="100" style="animation-delay:-2.3s"/><path d="M970 240V278L1000 308V340" pathLength="100" style="animation-delay:-2.8s"/></g>
+<g fill="#5cc4f2"><circle cx="672" cy="94" r="4"/><circle cx="672" cy="170" r="4"/><circle cx="672" cy="246" r="4"/><circle cx="1176" cy="94" r="4"/><circle cx="1176" cy="170" r="4"/><circle cx="1176" cy="246" r="4"/></g>
+<g fill="#6f97ab"><rect x="850" y="111" width="10" height="6" rx="1"/><rect x="1000" y="111" width="10" height="6" rx="1"/><rect x="850" y="127" width="10" height="6" rx="1"/><rect x="1000" y="127" width="10" height="6" rx="1"/><rect x="850" y="143" width="10" height="6" rx="1"/><rect x="1000" y="143" width="10" height="6" rx="1"/><rect x="850" y="159" width="10" height="6" rx="1"/><rect x="1000" y="159" width="10" height="6" rx="1"/><rect x="850" y="175" width="10" height="6" rx="1"/><rect x="1000" y="175" width="10" height="6" rx="1"/><rect x="850" y="191" width="10" height="6" rx="1"/><rect x="1000" y="191" width="10" height="6" rx="1"/><rect x="850" y="207" width="10" height="6" rx="1"/><rect x="1000" y="207" width="10" height="6" rx="1"/><rect x="850" y="223" width="10" height="6" rx="1"/><rect x="1000" y="223" width="10" height="6" rx="1"/><rect x="871" y="90" width="6" height="10" rx="1"/><rect x="871" y="240" width="6" height="10" rx="1"/><rect x="887" y="90" width="6" height="10" rx="1"/><rect x="887" y="240" width="6" height="10" rx="1"/><rect x="903" y="90" width="6" height="10" rx="1"/><rect x="903" y="240" width="6" height="10" rx="1"/><rect x="919" y="90" width="6" height="10" rx="1"/><rect x="919" y="240" width="6" height="10" rx="1"/><rect x="935" y="90" width="6" height="10" rx="1"/><rect x="935" y="240" width="6" height="10" rx="1"/><rect x="951" y="90" width="6" height="10" rx="1"/><rect x="951" y="240" width="6" height="10" rx="1"/><rect x="967" y="90" width="6" height="10" rx="1"/><rect x="967" y="240" width="6" height="10" rx="1"/><rect x="983" y="90" width="6" height="10" rx="1"/><rect x="983" y="240" width="6" height="10" rx="1"/></g>
+<rect x="860" y="100" width="140" height="140" rx="10" fill="#0b171d" stroke="#5cc4f2" stroke-width="1.5"/>
+<circle cx="876" cy="116" r="4" fill="#2c5364"/>
+<text x="930" y="176" text-anchor="middle" class="chip-a">AG</text>
+<text x="930" y="202" text-anchor="middle" class="mono chip-b">UPSTREAM</text>
+<g class="labels mono"><text x="672" y="84" text-anchor="start">Zephyr RTOS</text><text x="672" y="160" text-anchor="start">LE Audio</text><text x="672" y="266" text-anchor="start">Yocto</text><text x="1176" y="84" text-anchor="end">MCUboot</text><text x="1176" y="160" text-anchor="end">FPGA</text><text x="1176" y="266" text-anchor="end">nRF Connect</text></g>
+<text x="48" y="150" class="name">Arkadiusz Grzelka</text>
+<text x="50" y="192" class="mono role">Embedded firmware · Wireless · Open source</text>
+<text x="50" y="228" class="mono motto">&gt; Hard problems, solved at the root<tspan class="cursor">_</tspan></text>
+</g>
+</svg>
